@@ -5,10 +5,10 @@ import 'dotenv/config'
 
 // Tests assume a .env file with USPS_CLIENT_ID and USPS_CLIENT_SECRET
 
-const clientId = process.env.USPS_CLIENT_ID
-const clientSecret = process.env.USPS_CLIENT_SECRET
-
-const usps = new USPS({ clientId, clientSecret })
+const usps = new USPS({
+  clientId: process.env.USPS_CLIENT_ID,
+  clientSecret: process.env.USPS_CLIENT_SECRET,
+})
 
 test('Address lookup', async () => {
   const data = await usps.getAddress({
