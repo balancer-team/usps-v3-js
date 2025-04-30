@@ -21,7 +21,7 @@ test('Address lookup', async () => {
   assert.strictEqual(data.address.ZIPPlus4, '2142')
 })
 
-test('City/State lookup', async () => {
+test('City/state lookup', async () => {
   const data = await usps.getCityState({
     ZIPCode: '90210',
   })
