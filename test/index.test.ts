@@ -47,6 +47,16 @@ test('Address lookup with title case', async () => {
   assert.strictEqual(data.address.streetAddress, '302 Riverside Dr')
 })
 
+test('Address lookup with title case and abbreviation', async () => {
+  const data = await uspsWithTitleCase.getAddress({
+    streetAddress: '206 Ashley Ln SE',
+    city: 'Smryna',
+    state: 'GA',
+  })
+
+  assert.strictEqual(data.address.streetAddress, '206 Ashley Ln SE')
+})
+
 test('City/state lookup with title case', async () => {
   const data = await uspsWithTitleCase.getCityState({
     ZIPCode: '90210',
