@@ -74,3 +74,37 @@ const data = await usps.getCityState({
 //    ZIPCode: '90210'
 // }
 ```
+
+The USPS v3 API uses all caps for address fields. The library can automatically convert the fields to title case when returning the data. To enable this feature, set the `useTitleCase` option to `true` when creating the USPS instance.
+
+```javascript
+const usps = new USPS({
+  clientId: USPS_CLIENT_ID,
+  clientSecret: USPS_CLIENT_SECRET,
+  useTitleCase: true,
+})
+
+const data = await usps.getAddress({
+  streetAddress: '302 Riverside Drive',
+  city: 'Melbourne Beach',
+  state: 'FL',
+})
+
+// Response:
+//
+// {
+//   firm: '',
+//   address: {
+//     streetAddress: '302 Riverside Dr',
+//     ...
+
+const data = await usps.getCityState({
+  ZIPCode: '90210',
+})
+
+// Response:
+//
+// {
+//    city: 'Beverly Hills',
+//    ...
+```

@@ -1,3 +1,5 @@
+import { titleCase } from './title-case'
+
 // USPSToken type with exp property as a number and any other arbirary properties
 type USPSAuthResponse = {
   access_token: string
@@ -45,16 +47,26 @@ export class USPS {
   readonly baseUrl = 'https://apis.usps.com'
   readonly clientId: string
   readonly clientSecret: string
+  readonly useTitleCase: boolean
   private accessToken = ''
   private expiresAt = 0
 
-  constructor({ clientId = '', clientSecret = '' }) {
+  constructor({
+    clientId = '',
+    clientSecret = '',
+    convertToTitleCase = false,
+  }: {
+    clientId?: string
+    clientSecret?: string
+    convertToTitleCase?: boolean
+  }) {
     if (!clientId || !clientSecret) {
-      throw new Error('USPS clientId and clientSecret must be provided')
+      throw new Error('USPS clientId and clientSecret are required')
     }
 
     this.clientId = clientId
     this.clientSecret = clientSecret
+    this.useTitleCase = convertToTitleCase
   }
 
   private async getAccessToken() {
@@ -96,6 +108,15 @@ export class USPS {
     })
 
     const data = (await response.json()) as AddressResponse
+
+    if (this.useTitleCase) {
+      data.address.streetAddress = titleCase(data.address.streetAddress)
+      data.address.streetAddressAbbreviation = titleCase(data.address.streetAddressAbbreviation)
+      data.address.secondaryAddress = titleCase(data.address.secondaryAddress)
+      data.address.cityAbbreviation = titleCase(data.address.cityAbbreviation)
+      data.address.city = titleCase(data.address.city)
+    }
+
     return data
   }
 
@@ -109,6 +130,11 @@ export class USPS {
     })
 
     const data = (await response.json()) as CityStateResponse
+
+    if (this.useTitleCase) {
+      data.city = titleCase(data.city)
+    }
+
     return data
   }
 }
