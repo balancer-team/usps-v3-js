@@ -75,7 +75,9 @@ const data = await usps.getCityState({
 // }
 ```
 
-The USPS v3 API uses all caps for address fields. The library can automatically convert the fields to title case when returning the data. To enable this feature, set the `useTitleCase` option to `true` when creating the USPS instance.
+### Title Case Conversion
+
+The USPS v3 API returns all caps for address fields by default. This library can automatically convert the fields to a more human-readable title case if desired. To enable this feature, set the `useTitleCase` option to `true` when creating the USPS instance.
 
 ```javascript
 const usps = new USPS({
