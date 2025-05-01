@@ -13,7 +13,7 @@ const usps = new USPS({
 const uspsWithTitleCase = new USPS({
   clientId: process.env.USPS_CLIENT_ID,
   clientSecret: process.env.USPS_CLIENT_SECRET,
-  convertToTitleCase: true,
+  useTitleCase: true,
 })
 
 test('Address lookup', async () => {

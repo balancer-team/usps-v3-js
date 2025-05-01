@@ -54,11 +54,11 @@ export class USPS {
   constructor({
     clientId = '',
     clientSecret = '',
-    convertToTitleCase = false,
+    useTitleCase = false,
   }: {
     clientId?: string
     clientSecret?: string
-    convertToTitleCase?: boolean
+    useTitleCase?: boolean
   }) {
     if (!clientId || !clientSecret) {
       throw new Error('USPS clientId and clientSecret are required')
@@ -66,7 +66,7 @@ export class USPS {
 
     this.clientId = clientId
     this.clientSecret = clientSecret
-    this.useTitleCase = convertToTitleCase
+    this.useTitleCase = useTitleCase
   }
 
   private async getAccessToken() {
