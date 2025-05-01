@@ -1,6 +1,6 @@
 {
   "name": "@balancer-team/usps-v3",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Library for interfacing with the USPS v3 API.",
   "main": "index.js",
   "scripts": {
