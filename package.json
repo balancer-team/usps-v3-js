@@ -2,7 +2,7 @@
   "name": "@balancer-team/usps-v3",
   "version": "0.0.3",
   "description": "Library for interfacing with the USPS v3 API.",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "node --require ts-node/register --test test/*.test.ts"
