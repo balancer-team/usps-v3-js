@@ -30,17 +30,25 @@ type GetCityStateParams = {
   ZIPCode: string
 }
 
+type AddressResponseError = {
+  message: string
+  [key: string]: string // Allows for other string properties on the error object
+}
+
 type AddressResponse = {
   firm: string
   address: Record<string, string>
   additionalInfo: Record<string, string>
-  [key: string]: string | Record<string, string>
+  error?: AddressResponseError
+  [key: string]: string | Record<string, string> | undefined
 }
 
 type CityStateResponse = {
   city: string
   state: string
   ZIPCode: string
+  error?: AddressResponseError
+  [key: string]: string | Record<string, string> | undefined
 }
 
 export class USPS {
@@ -108,6 +116,7 @@ export class USPS {
     })
 
     const data = (await response.json()) as AddressResponse
+    if (data.error) return data
 
     if (this.useTitleCase) {
       data.address.streetAddress = titleCase(data.address.streetAddress)
@@ -130,6 +139,7 @@ export class USPS {
     })
 
     const data = (await response.json()) as CityStateResponse
+    if (data.error) return data
 
     if (this.useTitleCase) {
       data.city = titleCase(data.city)
