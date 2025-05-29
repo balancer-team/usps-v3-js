@@ -7,16 +7,10 @@
     "build": "tsc",
     "test": "node --require ts-node/register --test test/*.test.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/balancer-team/usps-v3-js.git"
-  },
   "author": "Alan Hettinger",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/balancer-team/usps-v3-js/issues"
-  },
-  "homepage": "https://github.com/balancer-team/usps-v3-js#readme",
+  "repository": "github:balancer-team/usps-v3-js",
+  "homepage": "https://www.balancer.team",
   "devDependencies": {
     "dotenv": "^16.4.7",
     "ts-node": "^10.9.2",
